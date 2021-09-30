@@ -1,0 +1,1041 @@
+
+word转xml标签属性介绍：
+<w:gridSpan>  标签的意思是：元素指示跨表网格对于每个单元格的列数  相当于html的跨列
+<w:gridSpan w:val="2" />    w:val="2" 设置跨列的个数
+
+
+//layui表格换行
+.layui-table-cell {
+    font-size:14px;
+    padding:0 5px;
+    height:auto;
+    overflow:visible;
+    text-overflow:inherit;
+    white-space:normal;
+    word-break: break-all;
+}
+//layui表头固定
+/* 表格容器样式，用flex布局可保证table内容能铺满剩余空间 */
+.sti-tbl-container {
+    height : 100%;
+    overflow : hidden;
+    display : flex;
+    flex-direction: column;
+}
+/* 设置表格的布局方式，用于宽度对齐 */
+.sti-tbl-body>table, .sti-tbl-header>table {
+    table-layout: fixed;
+}
+/* 设置表格内容容器，用于铺满整个剩余空间 */
+.sti-tbl-container .sti-tbl-body {
+    flex-grow : 1;
+    overflow-y : scroll;
+}
+
+lay('.test-item').each(function(){//此方法目的在于解决layui控件laydate 点击时一闪而过问题  
+				  laydate.render({elem:this,trigger: 'click'});
+				  form.render();
+			 同时在class中添加test-item样式
+//滑轮滚动时 laydate 关闭事件 
+	function myWheel(e) {
+		if(e.wheelDelta > 0){
+			//兼容IE,Opera,Chrome 
+			if(!$("input[name=layui-laydate]").hasClass("layui-laydate")){
+				alert("滑轮滚动了");
+				$(".layui-laydate").remove();
+			}			
+		  }else if(e.detail > 0){
+			//兼容Firefox        
+			  if(!$("input[name=layui-laydate]").hasClass("layui-laydate")){
+					$(".layui-laydate").remove();
+				}
+		  }else{
+			  if(!$("input[name=layui-laydate]").hasClass("layui-laydate")){
+					$(".layui-laydate").remove();
+				}
+	    }
+	}
+	//监听滑轮
+	if (document.addEventListener) {
+		document.addEventListener("DOMMouseScroll", myWheel, false);
+    }
+    //兼容火狐
+	document.onmousewheel = myWheel;//其他浏览器
+
+
+ lay('.test-item').each(function(){//此方法目的在于解决layui控件laydate 点击时一闪而过问题  
+				  laydate.render({elem:this,trigger: 'click'});
+				  form.render();
+			 同时在class中添加test-item样式
+一、SQL
+
+1.1、基本概念：
+
+数据库对象：
+1.表
+2.约束条件：保证数据完整性。
+3.视图：虚表，命名的查询语句。
+4.索引：加速查询（加快查询的速度）。
+5.序列：一串连续递增或递减的数字，步长相同，（代理键）。
+6.同义词：一个对象的另外一个叫法（对象的别名）。
+7.存储过程：用于操作
+8.函数：用作复杂运算的。用于计算。
+9.触发器：由事件触发的存储过程。
+10.包
+
+
+3、数字和日期都可以使用数学运算符建立表达式。
+
++，-，*，/ <>不等于
+日期可以加减数字，数字默认为天。 日期不能加日期，但日期可以减日期。字符不能加减。
+
+5、别名
+可以加中文的字段别名。
+如果想强制地改变列名的大小写，可以在别名的定义时加上双引号,列名有空格时也要在列名上加双引号。
+例：select lastname as "employees name" from employees;
+
+7、连接操作符： ||
+
+select lastname || 'work in' || department_id from tablename;
+
+select last_name || '''s salary is ' || salary 员工月薪 from employees;
+~~~
+注：在单引号中还要使用单引号的话，就必须使用两个单引号来实现一个单引号的功能。
+
+8、文本字符串
+
+*可以代表字符、数字或是日期。
+*当代表字符或日期的时候用单引号括起来，数字不需要。
+
+?逻辑操作符（用在 WHERE 子句中）
+1.AND
+2.OR
+3.NOT
+先执行 NOT ，再执行 AND 最后执行 OR。
+?ORDER BY
+ORDER BY 子句在 SELECT 语句的最后。
+?ASC：升序	DESC：降序
+?空值作为无穷大来处理。
+?rownum 显示行数量约束的关键字（在结果中可以做代理键使用）；可以按照查询列表中序号进行排序。
+系统在用户写出查询列表的同时就赋予每个列名一个序号，升序赋予。例： SELECT name,phone,adress from	;
+1	2	3
+
+
+?length(x)函数，求串 X 的长度，与之相似的是 lengthb(x)函数，用在多字节字符中。
+replace(x,y[,z])函数，返回值为将串 X 中的Y 串用 Z 串替换后的结果字符串。若省略 Z 参数， 则将串 X 中为 Y 串的地方删除。
+
+
+
+2、number 数字类型函数
+
+
+?ABS(x) 函数，此函数用来返回一个数的绝对值。
+
+3.1、对日期的数学运算
+
+SELECT （SYSDATE-HIRE_DATE）/7 FROM TABLENAME WHERE ROWNUM; SYSDATE-HIRE_DATE:数字列
+ADD_MONTHS(date,x)函数，返回加上 X 月后的日期 DATE 的值。X 可以是任意整数。如果结果的月份中所包含的  
+日分量少于 DATE 的月份的日分量，则返回结果月份的最后一天。如果不小于，则结果与 DATE 的日分量相同。时间分量也相同。
+CURRENT_DATE 以DATE 类型返回会话时区当前的日期。这个函数同 SYSDATE 相似，除了 SYSDATE 不管当会话时区。
+CURRENT_TIMESTAMP[(precision)]	以 TIMESTAMP WITH TIMEZONE 类型返回会话时区当前的日期。如果指定 precision，
+它指返回秒数的精度，缺省为 6。
+DBTIMEZONE 返回数据库的时区。
+LAST_DAY（日期） 指定日期所在月份的最后一天的日期，这个函数可用来确定本月还有多少天。
+LOCALTIMESTAMP[(precision)] 以 TIMESTAMP 类型返回会话时区的当前日期。如果指定
+precision，它指返回秒数的精度，缺省为 6 。
+MONTHS_BETWEEN(离当前比较近的日期 date1,以前的日期) 两个日期之间相差的月数（以日作为最小单位来计算的）。返回是相差的月数。
+如果 date1 和date2 的日分量相同，或者这两个日期都分别是所在月的最后一天，那么返回结果是个整数。否则，返回结果包含一个分数，以一个月 31 天计算。
+NEW_TIME(d,zone1,zone2)函数，当时区 zone1 中的日期和时间是 D 的时候，返回时区 zone2 中的日期和时间。返回类型为 DATE。
+zone1 和 zone2 是字符字符串，另外的时区可在 ORACLE9I 中通过查询 V$TIMEZONE_NAMES 得到。
+NEXT_DAY （日期，星期几） 指定日期后将要遇到的后七天的某一天的日期。
+ROUND（日期，‘MONTH/YEAR’） 四舍五入得到新的日期。 保留位置是月和年
+SESSIONTIMEZONE	返回当前会话的时区。返回类型是一个时区偏移或时区片名的字符字符串。
+如果指	定格式，则与 ALTER SESSION 语句中的格式相同。
+SYS_EXTRACT_UTC(datetime) 从提供的 DATETIME 中以 UTC(Coordinated Universal Time)返回时间。
+DATETIME 必须包含一个时区。
+SYSTIMESTAMP	以 TIMESTAMP WITH TIMEZONE 返回当前的日期和时间。
+当在分布式 SQL 语句中使用的时候，返回本地数据库的日期和时间。
+TRUNC（日期，‘MONTH/YEAR’） 截取
+TZ_OFFSET(timezone)	以字符字符串返回提供的 timezone 和 UTC 之间的偏移量。
+timezone 可以被指定为时区名或'+/-HH:HI'格式表示的偏移量。也可使用 SESSIONTIMEZONE 和
+DBTIMEZONE 函数，返回格式为'+/-HH:HI'。
+
+字符字符串	时区
+AST	大西洋标准时
+ADT	大西洋夏令时
+BST	白令标准时
+BDT	白令夏令时
+CST	中央标准时
+CDT	中央夏令时
+EST	东部标准时
+EDT	东部夏令时
+GMT	格林威治平均时
+HST	阿拉斯加夏威夷标准时
+
+
+HDT	阿拉斯加夏威夷夏令时
+MST	Mountain 标准时
+MDT	Mountain 夏令时
+NST	纽芬兰标准时
+PST	太平洋标准时
+PDT	太平洋夏令时
+YST	YuKon 标准时
+YDT	YuKon 夏令时
+
+
+3.2、日期和日期时间算术
+
+表中注：
+D1 和 D2 指日期值；
+DT1 和DT2 指日期时间值；
+I1 和 I2 指时间间隔值；
+N 指数字值。
+
+运算	返回类型结果
+
+d1-d2	NUMBER         返回 D1 和 D2 之间相差的天数。该值是一个数值，其小数部分代表一天的几分之几。
+d1+d2	N/A                 非法——仅能进行两个日期之间的相减。
+d1+n	DATE               在 D1上加上 N 天作为 DATE 类型返回。N 可以是实数，它包含一天的几分之几。
+d1-n	DATE               从 D1上减去 N 天作为 DATE 类型返回。N 可以是实数，它包含一天的几分之几。
+
+dt1-dt2	INTERVAL        返回 DT1 和DT2 之间的时间间隔。
+dt1+dt2	N/A                 非法——仅能进行两个日期之间的相减。
+dt1+i1	DATETIME       返回 DT1 和 I1 的和。
+dt1-i1	DATETIME       返回 DT1 和 I1 之间的差距。
+
+
+i1+i2	INTERVAL        返回 i1 和 i2 的和。
+i1-i2	INTERVAL        返回 i1 和 i2 之间的差距。
+
+i1*n	INTERVAL        返回 I1 的N 次方。
+i1/n	INTERVAL        返回 I1 除以 N 的值。
+
+
+
+3.3、显示转换：（conversion）
+
+TO_NUMBER(char[,'format_model'])	字符转换到数字类型
+TO_DATE(char[,'format_model'])	字符转换到日期类型
+格式说明符：要与前边要转换的字符串的格式要相同才能转换（匹配问题：格式和位数）。TO_CHAR(date[,'format_model'[,nlsparams]])
+第二个参数可以省略，不指定格式，按系统默认格式输出。区分大小写。
+使用 FM（在格式控制符前添加）符号可以去掉空格或是首位的零。
+如果指定了 NLSPARAMS，则它控制返回字符串的月和日分量所使用的语言。格式为：
+'NLS_DATA_LANGUAGE=language',language 指需要的语言。例：select to_char(sysdate,'FMyyyy-mm-dd') from dual;
+
+
+5.格式控制符的类型：
+
+
+
+
+
+
+
+
+
+
+6.时间格式控制符：
+
+
+YYYY 四位的年
+YEAR 年的拼写MM	2 位数字的月
+MONTH 月的全名
+MON 月名的前三个字符
+DY 星期名的前三个字符
+DAY 星期名的全称DD 2 位的天
+
+HH24:MI:SS AM HH12:MI:SS PM
+
+
+7.通过“”来实现加入特殊字符的格式控制符。
+SELECT TO_CHAR(SYSDATE,'FMyyyy"年"mm"月"dd"日"') from dual; DDSPTH
+~~
+DD 是格式控制符。
+TH 是序数词，将日期转换成英文的序数词拼写。
+SP 是基数词，将日期转换成英文的基数词拼写。
+
+TO_CHAR(NUM[,'format_model'[,nlsparams]])转换数字
+将 NUMBER 类型参数 NUM 转换成 VARCHAR2 类型。如果指定 FORMAT，它会控制整个转换。
+如果没有指定 FORMAT，那么结果字符串中将包含和 NUM 中有效位的个数相同的字符。NLSPARAMS 用来指定小数点和千分符及货币符号。它的格式可为：'NLS_NUMERIC_CHARS=' ' dg ' 'NLS_CURRENCY= ' 'string' ' ' 。 d 和g 分别代表小数点和千分符，STRING 代表货币符号。
+
+
+
+
+2.条件表达式：
+
+CASE 表达式（简单 CASE） 语法：
+CASE 表达式 WHEN	条件 1 THEN 返回值 1
+WHEN	条件 2 THEN 返回值 2
+.
+.
+.
+WHEN	条件 n THEN 返回值 n
+ELSE	返回值END
+
+DECODE 函数
+
+语 法 ： DECODE（
+条件,比较值 1，返回值 1
+比较值 2，返回值 2
+.
+.
+.
+比较值 n，返回值 n
+返回值（不满足条件时）
+）
+
+
+
+3.从多表中显示数据：
+SQL（老版本的） 等值查询
+SELECT TABLE1.COLUMN,TABLE2.COLUMN FROM TABLE1,TABLE2 WHERE
+TABLE1.COLUMN1=TABLE2.COLUMN2;//自然连接使用 AND 操作符增加查询条件使用表的别名来简化查询，提高查询功能。
+
+SELECT E.ID，D.ID FROM EMPL E，DEP D WHERE E.NAME=D.NAME；
+E、D：表别名
+多表等值连接查询
+为了连接 N 个表，至少需要 N-1 个连接条件。
+
+非等值查询
+使用 BETWEEN AND 查询近似值作为连接条件的多表结果。WHERE E.SALARY BETWEEN J.LOW AND J.HIGH
+
+外连接查询
+SELECT T1.COL,T2.COL FROM WHERE T1.COL(+)=T2.COL;左外连接所有 T2 的T1 信息。
+SELECT T1.COL,T2.COL FROM WHERE T1.COL=T2.COL(+);右外连接所有 T1 的T2 信息。
+为了看到与连接条件不匹配的数据，就必须得用外连接。
+
+自连接
+通过表的别名来创建虚拟逻辑表,进行自连接查询。
+select worker.last_name || 'work for' || manager.last_name from employees worker,employees manager
+where worker.manager_id=manager.employee_id;
+
+9I 适 应 性 连 接 ： select t1.col,t2.col from table
+cross join t2 //交叉连接
+natural join t2//自然连接:把两表中所有等值的字段都作为连接条件（但这些连接条件不用写）。
+从两个表中选出连接列的值相等的所有行。
+如果两个列的名称相同，但数据类型不同；或是类型相同，意义不同都会出错。
+
+
+join t2 using (column_name);基于自然连接，只有在 USING 中出现的，才作为连接条件（在
+USING 中列名前一定不能加前缀）。
+
+join t2 on (t1.col=t2.col);基于 ON 的自然连接。等值、非等值或自连接都可以实现。left|right|full outer join t2 on(t1.col=t2.col);
+select e.last_name,d.department_name,l.city from employees e
+left outer join departments d on e.department_id=d.department_id right outer join locations l	on d.location_id=l.location_id;
+
+*&*	可以连续做左连接或右连接的操作。
+full outer join 忽略连接条件，把要查询的列的所有行全显示出来。
+
+笛卡尔乘积（多表查询容易产生的错误）形成原因：
+*、忽略连接条件；
+*、连接条件不正确；
+*、笛卡尔乘积是由第一个表的所有行和第二个表的所有行联合形成的；
+*、为了避免笛卡尔乘积的产生，一定要在 WHERE 条件中正确写出连接条件。set linesize 160;设置显示行的行数。
+
+
+1.9、子查询：
+
+语法：
+select col from table
+where expr operator (select col from table); 子查询在主查询执行前执行一次。
+子查询的结果被用于主查询。
+
+使用规则：
+在 WHERE 和 HAVING 子句中都可以使用子查询。
+*、子查询必须用括号扩起。
+*、子查询应该在比较条件的右边。
+*、在子查询中的 ORDER BY 子句不需要，除非执行 TOP-N 分析。
+TOP-N 分析：（在一些表里求出最怎么怎么怎么样（最好、做多...）的几个人）。
+*、对单行子查询使用单行比较操作符，多行子查询使用多行比较操作符。可以在子查询中使用组函数。
+
+子查询的分类：
+单行单列子查询：一定返回一行
+单行操作符：>,<,=，>=,<=,<> 多行单列子查询
+单行多列子查询：返回零行或多行多行操作符：
+in 等于列表中的任何值。（不能用 NOT IN）
+ANY 与子查询返回的每个值进行比较。(小于是小于最大的，大于是大于最小的) select employee_id,last_name,job_id,salary from smployees
+where
+salary < any(select salary from employees where job_id='IT_PROG') and job_id <> 'IT_PROG';
+ALL（小于是小于最小的，大于是大于最大的） select e.employee_id,e.last_name,e.salary
+from employees e,
+(select department_id,min(salary) m from employees group by department_id )d
+where e.department_id=d.department_id and e.salary=d.m；
+查询每个部门薪水最少的员工的资料。
+
+4.多行多列子查询
+
+
+
+
+sql记录：
+
+select  *  from   A where not exists(select 1 from B where A.id=B.id)
+https://www.cnblogs.com/qmfsun/p/4511754.html
+http://blog.sina.com.cn/s/blog_67e424340100iyg1.html
+select t1.*  from (select rownum-1 rn,a.* from (select t.* from JX_TEACHER_GRADE t  order by t.jjfdm )a) t1 where t1.fsly='1' or t1.jjfdm like 'Z%'  
+
+oracle  记录时间：2019.08.28
+   5.操作符：
+          oracle中的算术运算符：  只有+ -  *  /  其中除号(/)的结果是浮点数   求余运算只能借助函数：mod(x,y)  返回x除以y的余数
+          oracle中的关系运算符：  =           等于 
+                                                <>或者!= 不等于
+                                                <               小于
+                                                >               大于
+                                                <=             小于或者等于
+                                                 >=             大于或者等于
+
+          oracle中的关系运算符： 三个   AND  OR  NOT
+         
+          字符串连接操作符：     ||   字符串连接用双竖线表示    ①oracle中字符串可以用单引号，也可以用双引号，在别名中存在空格时，必须用双引号
+                                                                                              在表名，列名时用双引号
+                                                                                               SELECT (ENAME || 'is a ' || JOB) AS "Employee Details" ①
+    6.高级查询
+              
+           消除重复行
+                       Oracle 查询中结果中，可能出现若干行相同的情况，那么可以使用 DISTINCT 消除重复行
+                        SELECT DISTINCT DEPTNO FROM EMP; 
+                           DEPTNO
+                         ------
+                        30
+                        20
+                        10
+            NULL 操作   
+                    如果某条记录中有缺少的数据值，就是空值（NULL 值）。空值不等于 0 或者空格，空值是指未赋值、未知或不可用的值。
+                    任何数据类型的列都可以包括NULL 值，除非该列被定义为非空或者主键。
+                    在查询条件中NULL 值用 IS NULL 作条件，非 NULL 值用 NOT IS NULL 做条件。
+            IN 操 作
+                     在 Where 子句中可以使用 IN 操作符来查询其列值在指定的列表中的行。
+                    例：查询出工作职责是SALESMAN、PRESIDENT 或者 ANALYST 的员工。条件有两种表示方法：
+                            1.WHERE job = 'SALESMAN ' OR job = 'PRESIDENT ' OR job = 'ANALYST '
+                            2.WHERE job IN ('SALESMAN', 'PRESIDENT', 'ANALYST')
+                           对应 IN 操作的还有NOT IN，用法一样，结果相反。 
+
+           BETWEEN…AND…
+                      在 WHERE 子句中，可以使用 BETWEEN 操作符来查询列值包含在指定区间内的行。比如，查询工资从 1000 到 2000 之间的员工。
+                 可以使用传统方法： WHERE SAL>=1000 AND SAL<=2000
+                     或：WHERE SAL BETWEEN 1000 AND 2000        BWTWEEN操作所指定的范围也包括边界。
+
+            LIKE 模糊查询：
+
+                   字符匹配操作可以使用通配符“%”和“_”:
+?               %：表示零个或者多个任意字符。
+?                _：代表一个任意字符。
+              注意：LIKE '字符串'[ESCAPE '字符']。匹配的字符串中，ESCAPE 后面的“字符”作为转义字符。
+                         
+                         若需表示  包含“30%”的字符串 ： '%30\%%' escape '\'           “\”指转义字符，“\%”在字符串中表示一个字符“%”。
+
+             集合运算 ：              
+                     就是将两个或者多个结果集组合成为一个结果集
+                     ?INTERSECT(交集)，返回两个查询共有的记录。
+?                     UNION ALL(并集)，返回各个查询的所有记录，包括重复记录。
+?                     UNION(并集)，返回各个查询的所有记录，不包括重复记录。
+?                     MINUS(补集)，返回第一个查询检索出的记录减去第二个查询检索出的记录之后剩余的记录。
+
+                 注意：查询所返回的列数以及列的类型必须匹配，列名可以不同。
+
+                可以通过 insert into …select 把一个结果集插入到另一张结构相同的表中，
+                 因此可以使用 union 把若干条记录一次性插入到一张表中
+                 例：
+                   INSERT INTO DEPT
+                   SELECT 50,'公关部','台湾' FROM DUAL
+                   UNION
+                   SELECT 60,'研发部','西安' FROM DUAL
+                  UNION
+                    SELECT 70,'培训部','西安' FROM DUAL 
+      7.连接查询：
+                  内联接(inner join)、外联接(outer join)         外联接又分为左外联接(left outer join)和右外联接(right outer join)    
+                  Oracle 中对两个表或者若干表之间的外联接用 （+）表示     
+                   内联接(inner join)            查询出工资大于2000元的 员工姓名，部门，工作，工资.
+                第一种写法： SELECT e.ENAME,e.JOB,e.SAL,d.DNAME  FROM emp e,dept d  
+                                                  WHERE e.deptno=d.deptno 4 AND e.SAL>2000;  
+                 第二种写法：  SELECT e.ENAME,e.JOB,e.SAL,d.DNAME
+                                                     FROM EMP e INNER JOIN DEPT d ON e.DEPTNO=d.DEPTNO 
+                                                  WHERE e.SAL>2000      
+                INNER JOIN 中，关键字 INNER 可以省略
+                 外联接：   第一种： SELECT e.ENAME,e.JOB,e.SAL,d.DNAME
+                                                                               FROM EMP e ,DEPT d
+                                             WHERE    e.DEPTNO(+)=d.DEPTNO 
+                              (+)：Oracle 专用的联接符，在条件中出现在左边指右外联接，出现在右边指左外联接。
+                        第二种（推荐  方便移植到其他数据库）： SELECT e.ENAME,e.JOB,e.SAL,d.DNAME
+                                                                           FROM EMP e RIGHT OUTER JOIN DEPT d ON e.DEPTNO=d.DEPTNO
+                                           RIGHT OUTER JOIN 中，关键字 OUTER 可以省略
+
+
+第3章  子查询和常用函数
+                子查询在select update delete语句内部可以出现select语句 内部的select语句结果可以作为外部语句中条件
+           子句的一部分，也可以作为外部查询的临时表，子查询的类型：
+                               1.   单行子查询：不向外部返回结果，或者只返回一行结果
+                               2.   多行子查询：向外部返回零行，一行或者多行结果
+               SELECT ENAME,JOB,SAL FROM EMP
+                                        WHERE DEPTNO=(SELECT DEPTNO FROM DEPT WHERE DNAME='SALES') 
+
+                    内部查询的结果作为外部查询的条件。
+    注意： 1. 如果内部查询不返回任何记录，则外部条件中字段 DEPTNO 与NULL 比较永远为假，也就是说外部查询不返还任何结果。
+                
+                2 .在单行子查询中外部查询可以使用=、>、<、>=、<=、<>等比较运算符。
+                 
+                3.  内部查询返回的结果必须与外部查询条件中的字段（DEPTNO）匹配。
+
+                4.   如果内部查询返回多行结果则出现错误。
+                 
+               1. 查询出 Emp 表中比任意一个销售员(“SALESMAN”)工资低的员工姓名、工作、工资。
+                如果用子查询做，子查询中就会返回多条记录。用普通的关系符（>、<等）运行就会出错
+                这时候需要用关键字ANY。ANY 放在比较运算符后面，表示“任意”的意思
+                 SELECT ENAME,JOB,SAL FROM EMP
+                            WHERE SAL<ANY (SELECT SAL FROM EMP WHERE JOB='SALESMAN') ①
+                     ①  <any:比子查询结果中任意的值都小，也就是说，比子查询结果中最大值还小，
+             那么同理>any 表示比子查询结果中最小的还大。
+                2. 查询出比所有销售员的工资都高的员工姓名，工作，工资。
+                      ANY 可以表示任意的，但本案例中要求比所有销售员工资都高，那么就要使用另外一个关键字 ALL。
+                      ALL 与关系操作符一起使用，表示与子查询中所有元素比较。
+
+              SELECT ENAME,JOB,SAL FROM EMP
+                           WHERE SAL>ALL (SELECT SAL FROM EMP WHERE JOB='SALESMAN') ①
+                               >ALL：比子查询结果中所有值还要大，也就是说，比子查询结果中最大值还要大。
+                               <ALL： 表示比最小值还要小。
+               对于子查询还可以使用 IN 和 NOT IN 操作符进行操作  
+
+    Oracle中的伪列
+                  在 Oracle 的表的使用过程中，实际表中还有一些附加的列，称为伪列。
+                  伪列就像表中的列一样，但是在表中并不存储。伪列只能查询，不能进行增删改操作。
+     两个伪列：
+                  ROWID 和ROWNUM。
+               
+               ROWID：
+                      表中的每一行在数据文件中都有一个物理地址，ROWID 伪列返回的就是该行的物理地址。
+                      使用ROWID 可以快速的定位表中的某一行。ROWID 值可以唯一的标识表中的一行。
+                      由于 ROWID 返回的是该行的物理地址，因此使用 ROWID 可以显示行是如何存储的。
+               ROWNUM：
+                      在查询的结果集中，ROWNUM 为结果集中每一行标识一个行号，第一行返回 1，第二行返回 2，以此类推。
+                      通过 ROWNUM 伪列可以限制查询结果集中返回的行数。
+
+                      查询出员工表中前 5 名员工的姓名，工作，工资。
+                                   SELECT ROWNUM,ENAME,JOB,SAL FROM EMP WHERE ROWNUM<=5;
+                      查询出工资最高的前 5 名员工的姓名、工资和工资。
+                           分析：
+                               工资最高的前 5 名”需要先降序排序，再取前 5 名，
+                                但是生成ROWNUM 操作比排序要早，排序时已经连同 ROWNUM 一起排序了，
+                                因此不能直接在案例 1 的语句中直接加上Order by 就行，而是需要对排序的结果重新做二次查询，
+                                产生新的 ROWNUM 才能作为查询的条件依据。
+
+                        SELECT ROWNUM,T.* FROM ①
+                                                       (SELECT ENAME,JOB,SAL
+                                                                       FROM EMP ORDER BY SAL DESC) T ②
+                                    WHERE ROWNUM<=5 
+                                ① T 是子查询②的别名，这里的 ROWNUM 是第二次查询后的 ROWNUM。
+
+                          查询出表 EMP 中第 5 条到第 10 条之间的记录。
+                              分析：
+                                      这是分页的应用。
+                                       在查询条件中，如果查询条件中ROWNUM 大于某一正整数，则不返还任何结果。
+                                 Select  * from (
+                                          select rownum r ename,job,sal ①  from  emp where rownum<=10   )②
+                                  where r>5 ③
+                              解析：
+                                   ① 内部查询中得到 ROWNUM 并且用别名 R 记录，供外层条件③使用。
+                                   ② 内部查询的 ROWNUM，与外出的ROWNUM 列是平等的两列。
+                                   ③ 使用的 R 是内层产生的ROWNUM，在外层看来，内层查询的 ROWNUM 是正常的一列。
+
+
+
+    注意：
+            ROWNUM 与 ROWID 不同，ROWID 是插入记录时生成，ROWNUM 是查询数据时生成。
+            ROWID 标识的是行的物理地址。ROWNUM 标识的是查询结果中的行的次序。
+
+          
+              
+     五：PL/SQL中动态执行SQl语句
+        在 PL/SQL 程序开发中，可以使用 DML 语句和事务控制语句，但是还有很多语句（比如DDL 语句）不能直接在 PL/SQL 中执行。这些语句可以使用动态 SQL 来实现                                                              
+          PL/SQL 块先编译然后再执行，动态 SQL 语句在编译时不能确定，只有在程序执行时把
+          SQL 语句作为字符串的形式由动态 SQL 命令来执行。在编译阶段 SQL 语句作为字符串存在， 程序不会对字符串中的内容进行编译，在运行阶段再对字符串中的 SQL 语句进行编译和执行，动态 SQL 的语法是
+     语法格式：动态SQL
+           EXECUTE IMMEDIATE  动态语句字符串
+          【Into 变量列表】  【USING 参数列表】
+     语法解析：
+        如果动态语句是select语句，可以把查询的结果保存到  INTO后面的变量中 
+        如果动态语句中存在参数，USING为语句中的参数值
+        动态SQL中的参数格式是：[:参数名]， 参数在运行时需要使用USING传值
+
+动态SQL
+    DECLARE
+     sql_stmt  VARCHAR2(200);动态SQL语句
+     emp_id    NUMBER(4)  :=7566;
+     salary       NUMBER(7,2);
+     dept_id   NUMBER(2):=90;
+     dept_name   VARCHAR2(14):='personnel';
+    location  VARCHAR2(13):='DALLAS';
+   emp_rec  emp%ROWTYPE;
+BEGIIN
+     无子句的  execute immediate
+  EXECUTE IMMEDIATE 'CREATE TABLE bonus1(id NUMBER,amt NUMBER)';  //动态执行一个完整的 SQL 语句。
+    using子句的execute immediate
+    sql_stmt:='INSERT  INTO  dept  VALUES(:1,:2,:3)';
+   EXECUTE IMMEDIATE  sql_stmt USING dept_id,dept_name,location; //SQL 语句中存在 3 个参数分别标识为：[:1、:2、:3]，因此需要用 USING 关键字对三个参数分别赋值。
+   into子句的execute immediate
+  sql_stmt:='SELECT* FROM emp WHERE empno= :id';
+   EXECUTE IMMEDIATE sql_stmt INTO emp_rec  USING emp_id;  //对动态查询语句可以使用 INTO 子句把查询的结果保存到一个变量中，要求该结果只能是单行。
+
+returning  into子句的execute immediate
+sql_stmt:='UPDATE emp SET sal=2000 WHERE empno =  :1
+ RETURNING sal INTO :2'
+EXECUTE IMMEDIATE sql_stmt USING emp_id RETUTNING INTO salary; // 在 Oracle 的 insert，update，delete 语句都可以使用 RETURNING 子句把操作影响的行中的数据返回，对 SQL 语句中存在 RETURNING 子句时，在动态执行时可以使用RETURNING INTO 来接收。
+EXECUTE IMMEDIATE 'DELETE FROM dept WHERE deptno=:num'
+   USING dept_id; //动态执行参数中可以是：[:数字]也可以是[:字符串]。
+END;
+ 
+   
+
+一、背景
+　　一张person表，有id和name的两个字段，id是唯一的不允许重复，id相同则认为是重复的记录。
+　　二、解决
+　　select id from group by id having count(*) > 1
+　　按照id分组并计数，某个id号那一组的数量超过1条则认为重复。
+
+
+oracle查询表中字段里数据是否有重复
+
+Sql代码   
+SELECT TEST_NAME,COUNT(*) FROM T_TEST GROUP BY TEST_NAME HAVING COUNT(*) > 1
+
+Oracle查询重复数据并删除，只保留一条记录
+
+1、查找表中多余的重复记录，重复记录是根据单个字段（Id）来判断
+  select * from 表 where id in (select id from 表 group by id having count(id)>1)
+
+2   删除表中多余的重复记录，重复记录是根据单个字段（Id）来判断，只留有rowid最小的记录
+
+   delete from 表 where (id) in (select id from 表 group by id  having count(id)>1) 
+                                    and  rowid not in (select min(rowid) from 表 group by id having count(*)>1)
+
+3、查找表中多余的重复记录（多个字段）
+     
+     select * from 表 a where (a.Id,a.seq) in(select Id,seq from 表 group by Id,seq having  count(*) > 1)
+
+4、删除表中多余的重复记录（多个字段），只留有rowid最小的记录
+
+delete  from 表 a where (a.Id,a.seq) in (select Id,seq from 表 group by Id,seq having count(*) > 1) 
+                            and rowid not in (select min(rowid) from 表 group by Id,seq  having count(*)>1)
+
+5、查找表中多余的重复记录（多个字段），不包含rowid最小的记录   
+
+select  * from 表 a where (a.Id,a.seq) in (select Id,seq from 表 group by Id,seq having count(*) > 1)
+                            and rowid not in (select min(rowid) from 表 group by Id,seq having count(*)>1)
+
+
+1。用rowid方法
+据据oracle带的rowid属性，进行判断，是否存在重复，语句如下：
+查数据：
+select * from table1 a where rowid !=（select max（rowid）
+from table1 b where a.name1=b.name1 and a.name2=b.name2……）
+删数据：
+delete  from table1 a where rowid !=（select max（rowid）
+from table1 b where a.name1=b.name1 and a.name2=b.name2……）
+ 
+2.group by方法
+查数据：
+select count（num）， max（name） from student 
+--列出重复的记录数，并列出他的name属性
+group by num
+having count（num） >1 --按num分组后找出表中num列重复，即出现次数大于一次
+删数据：
+delete from student
+group by num
+having count（num） >1
+这样的话就把所有重复的都删除了。
+
+
+3.用distinct方法 -对于小的表比较有用
+create table table_new as   select distinct *   from table1 
+minux
+truncate table table1;
+insert into table1 select * from table_new;
+查询及删除重复记录的方法大全
+1、查找表中多余的重复记录，重复记录是根据单个字段（peopleId）来判断
+select * from people
+where peopleId in （select peopleId from people group by 
+peopleId having count（peopleId） > 1）
+2、删除表中多余的重复记录，重复记录是根据单个字段（peopleId）来判断，只留有rowid最小的记录
+delete from people
+where peopleId in （select peopleId from people group by 
+peopleId
+having count（peopleId） > 1）
+and rowid not in （select min（rowid） from people group by 
+peopleId having count（peopleId ）>1）
+3、查找表中多余的重复记录（多个字段）
+select * from vitae a
+where （a.peopleId,a.seq） in （select peopleId,seq from vitae 
+group by peopleId,seq having count（*） > 1）
+ 
+4、删除表中多余的重复记录（多个字段），只留有rowid最小的记录
+delete from vitae a
+where （a.peopleId,a.seq） in （select peopleId,seq from vitae 
+group by peopleId,seq having count（*） > 1）
+and rowid not in （select min（rowid） from vitae group by 
+peopleId,seq having count（*）>1）
+5、查找表中多余的重复记录（多个字段），不包含rowid最小的记录
+select * from vitae a
+where （a.peopleId,a.seq） in （select peopleId,seq from vitae 
+group by peopleId,seq having count（*） > 1）
+and rowid not in （select min（rowid） from vitae group by 
+peopleId,seq having count（*）>1）
+ 
+（二）
+比方说
+在A表中存在一个字段“name”，
+而且不同记录之间的“name”值有可能会相同，
+现在就是需要查询出在该表中的各记录之间，“name”值存在重复的项；
+Select Name,Count（*） From A Group By Name Having Count（*） > 
+1
+如果还查性别也相同大则如下：
+Select Name,***,Count（*） From A Group By Name,*** Having 
+Count（*） > 1
+ 
+（三）
+方法一
+declare @max integer,@id integer
+declare cur_rows cursor local for select 主字段，count（*） from 表名 
+group by 主字段 having count（*） >； 1
+open cur_rows
+fetch cur_rows into @id,@max
+while @@fetch_status=0
+begin
+select @max = @max -1
+set rowcount @max
+delete from 表名 where 主字段 = @id
+fetch cur_rows into @id,@max
+end
+close cur_rows
+set rowcount 0
+ 
+方法二
+＂重复记录＂有两个意义上的重复记录，一是完全重复的记录，也即所有字段均重复的记录，二是部分关键字段重复的记录，
+比如Name字段重复，而其他字段不一定重复或都重复可以忽略。
+1、对于第一种重复，比较容易解决，使用
+select distinct * from tableName就可以得到无重复记录的结果集。
+如果该表需要删除重复的记录（重复记录保留1条），可以按以下方法删除
+select distinct * into #Tmp from tableName
+drop table tableName
+select * into tableName from #Tmp
+drop table #Tmp
+发生这种重复的原因是表设计不周产生的，增加唯一索引列即可解决。
+ 
+2、这类重复问题通常要求保留重复记录中的第一条记录，操作方法如下
+假设有重复的字段为Name,Address，要求得到这两个字段唯一的结果集
+select identity（int,1,1） as autoID, * into #Tmp from 
+tableName
+select min（autoID） as autoID into #Tmp2 from #Tmp group by 
+Name,autoID
+select * from #Tmp where autoID in（select autoID from 
+#tmp2）
+最后一个select即得到了Name，Address不重复的结果集（但多了一个autoID字段，实际写时可以写在select子句中省去此列）
+ 
+（四）
+查询重复
+select * from tablename where id in （
+select id from tablename
+group by id
+having count（id） > 1
+）
+
+
+显示内连接：
+    select * form  表1 inner join 表2 on  连接条件 
+    
+    select * from emp e1 inner join dept d1 on e1.deptno = d1.deptno;
+    inner 关键字可以省略
+    
+ 外联接
+ 
+    左外连接：left outer join  左表中所有的记录  如果悠表没有对应记录 就显示空
+    右外连接：right outer join  右表中的所有记录  如果左表没有对应记录，就显示空
+    
+    outer关键字可以省略
+       select * from emp e1 left outer join dept d1 on e1.deptno = d1.deptno
+    
+      select * from emp e1 right outer join dept d1 on e1.deptno = d1.deptno
+  oracle 中的外连接（+） 实际上是如果没有对应的记录就加上空值
+  select  *from emp e1 ,dept d1 where e1.deptno = d1.deptno(+);
+  我们要将所有的人员列出来  没有部门的我们就采用+来让他显示空值
+  
+  
+  子查询 ： 查询语句中嵌套查询语句  用来解决类似问题    用来解决复杂的查询语句
+  单行子查询：类似我们查询出来的只有一行一列记录  >   >=  =<  <= <>  !=  可以用这些操作   因为查询出来的结果只有一个值
+  
+  多行子查询：    
+      
+    查询最高工资的员工信息
+    1. 查询出最高工资
+       select  max（sal）from emp   5000
+   2. 工资等于最高工资
+     select  * from  emp   where sal=（select  max（sal）from emp）
+   
+  查询出比雇员7654的工资高，同时和7788从事相同工作的员工信息
+  
+  1 雇员7654的工资  1250
+    select  sal from  emp where empno=7654；
+  2 7788从事的工作  analyst(工作类型)
+    select   job  from emp where empno = 7788;
+  3 两个条件合并
+    select * from emp  where sal>1250 and job ='analyst';
+    
+     select * from emp  where sal>(select  sal from  emp where empno=7654) and job =(select   job  from emp where empno = 7788);
+    
+    查询每个部门最低工资的员工信息和他所在的部门信息
+    1.将问题拆分  先要知道每个部门的最低工资
+     select deptno min（sal）minsal from emp group by deptno; 
+    2.员工工资等于他所处部门的最低工资 
+      将上面的查询结果当做一张表
+    select  * from emp e1 ,（select deptno min（sal）minsal from emp group by deptno） t1 dept d1 where e1.deptno=d1.deptno 
+    and e1.sal = t1.minsal;
+    3 查询部门相关信息
+      select  * from emp e1 ,（select deptno min（sal）minsal from emp group by deptno） t1 where e1.deptno=d1.deptno 
+    and e1.sal = t1.minsal;  and e1.deptno = d1.deptno;
+    
+    
+    查询不是领导的信息
+     select * from emp where empno in (select mgr from emp);
+     select * from emp where empno not in (select mgr from emp);  没有记录  因为有一个空值
+     select * from emp where empno <>all (select mgr from emp);  不等号不能和空值作比较  没法比较所以没有记录
+     正确写法
+     select * from emp where empno not in (select mgr from emp  where mgr is not null);直接在里面加条件
+      通常情况下 数据库中不要出现 null   最好的做法加上 not null   null值并不代表不占空间， char（100）你给他插入一个null 
+      他照样还是占100个字符
+      exists (查询语句)   ： 存在的意思
+            当做布尔值来处理   当查询语句有结果的时候，就是返回true
+                                                                                  否则返回的是false
+      数据量比较大的时候是非常高效的    
+      
+      select *from   emp where exists(select * from emp where deptno = 1234567);  括号里面的没有结果   所有整体全部是没有结果的 相当于
+      select * from emp where 3=4;  3不等于4 那这个条件永远不成立
+      
+      select  * from emp where exists (select * from emp where deptno = 20)  是有结果的  出现全部记录
+        查询有部门的员工信息
+        先会根据部门表查询出来的第一个的部门编号  去在emp中一个一个去对比 找到了就返回  找不到就不显示
+        select  * from dept d1 where exists(select * from emp e1 where e1.deptno = d1.deptno);
+        
+        
+       找到员工表中的工资最高的前三名（降序排序）
+       select  * from empty  order by sal   desc 
+       
+       
+       rownum  伪列  ，系统自动生成的一列   用来表示行号
+       
+       select rownum，e1 *  from emp  e1   rownum  颜色和系统关键字颜色一样  是oracle 提供的  实际上就是系统自己给我们添加的一个行号
+       
+       rownum  是 oracle中特有的用来表示行号的，默认值/（或者说）起始值是1，在查询出结果之后，再添加1
+       
+       因为我们查询的记录 他不是一次性 全都一张表出来  他是查询出来显示一条  rownum起始值是1 在查询出来一条 对rownum +1吧
+       再查询出一条rownum 再+1吧
+       
+       查询rownum大于2的所有记录
+       select  rownum ,e1. * from   emp  e1 where rownum>2;   结果是没有任何记录记录   他的起始值是1
+       查询rownum大于等于1的所有记录
+       select   rownum ,e1. * from   emp  e1 where rownum>=1;
+       
+       现在假社 emp表中有14条记录     他首先去查的是emp表 那他呢就会拿一条记录出来 他会先判断下rownum>=1成不成立   成立  
+       我们的默认值是1  这个时候条件成立  能够成立 继续往下走 在拿一条记录出来  刚才rownum是1  在拿完之后 他会做一个操作  对rownum++
+       rownum  现在是2  2 满足条件>=1吗？ 满足  那这条记录满足条件  再 拿一条记录出来  又++  和上面一样 所有14条记录全部出来
+       大于号不能做  你只能做>=1吧
+       查询rownum <6的所有记录
+       
+       select rownum ,e1.* from emp e1 where rownum<6   查询出来有记录   5条
+       
+       rownum 最好不能做大于号判断，可以做小于号判断 
+       
+       rownum 排序
+        select    rownum ，e1.* from emp order by;   
+        select    rownum ，e1.* from emp order by sal ;   这个时候rownum 还有没有意义？  rownum 就乱了  会打乱查询结果  
+        
+        
+        SQL 执行顺序 
+          首先执行的是 from     再执行的where条件  再执行 group by having   再执行select    之后 加了一个rownum （我们的rownum  刚才说了 再查询出结果再+了个1）
+            
+       再去执行 order by  所以这个结果乱了
+       
+       找到员工表中工资最高的前三名
+       select * from emp order by sal desc; 在当前情况下rownum  有没有意义 没有
+       select rownum，e1.* from emp  e1 order by sal desc;  没有意义
+       
+       可以 做如下操作   先不添加rownum  而是先把该排完序  然后再写一个语句 再查询  此时排完序的表相当于一张新表
+       将上面的结果当作一张表处理  在查询  添加rownum 就是有序的
+       select rownum  ，t1.* from (select e1.* from emp e1 order by sal desc) t1;
+       但是现在只需要前3条  只要显示前3条记录
+        select rownum  ，t1.* from (select e1.* from emp e1 order by sal desc) t1  where rownum <4;
+        
+        
+        视图：
+            是对查询结果的一个封装
+               视图里面所有的数据  都是来自原表  都是来自它查询的那张表  视图本身不存储任何数据
+            1.能够封装复杂的查询语句
+            2.屏蔽表中的细节
+            
+         语法：
+         create  [or replace ]  view 视图名称  as 查询语句 [with read only]  只读视图  可选语句
+        
+       创建一个视图
+        create  or replace  view view_test1 as select ename,job,mgr from emp;
+        通过这个视图 可以看到什么呢
+        select * from view_test1;  屏蔽了细节
+        通过视图修改数据
+        update view_test1 set ename='SMITH2' where ename='SMITH';  可以修改视图的数据
+         然后我们在查询原表 看一下改没改    改了  因为视图不存储数据
+         注意通常不要通过视图修改数据  视图创建的时候，通常要加上with read  only   加上之后就无法修改了    
+        
+        
+
+
+<!-- spring整合quartz定时器   wc -->
+	<!-- 定义任务处理类 -->
+    <bean id="jxCourseArrangeAction" class="com.saint.teaching.ctrl.JxCourseArrangeAction">
+		<property name="jxCourseArrangeService" ref="jxCourseArrangeService"/>
+		<property name="kyMSpendingService" ref="kyMSpendingService"/>
+		<property name="jxCoursezxTimeService" ref="jxCoursezxTimeService"/>
+		<property name="jxCoursePlanService" ref="jxCoursePlanService"/>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/> 
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="frmCodeService" ref="frmCodeService"/>
+		<property name="wechatSysparamService" ref="wechatSysparamService"/>
+		<property name="jxLogRemindService" ref="jxLogRemindService"></property>		 
+    </bean>
+
+   <!--  jobDetail -->
+   <!-- 走jxCourseArrangeAction类   getSMSInfo方法   -->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="jxCourseArrangeAction"></property>
+        <property name="targetMethod" value="getSMSInfo"></property>
+        <property name="concurrent" value="false" />
+    </bean>
+
+   <!-- 定义trigger 触发器 -->
+   <!--
+     * 表示所有值； 
+     ? 表示未说明的值，即不关心它为何值； 
+     - 表示一个指定的范围； 
+     , 表示附加一个可能值； 
+     / 符号前表示开始时间，符号后表示每次递增的值； 
+            共6位占位符 分别代表 秒 分 小时   天  月  周
+    -->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="jobDetail"></property>     
+        <!-- <property name="jobDetail" ref="jobDetail"></property> -->
+        <property name="cronExpression" value="0 58 7,19 * * ?"></property>
+    </bean>
+    
+   <!--   配置调度执行的触发器 -->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+           <list>
+                <ref bean="cronTrigger"/>
+           </list>
+        </property>
+    </bean>
+
+
+https://blog.csdn.net/wpenn2121/article/details/7386156  
+https://blog.csdn.net/tianzengyan/article/details/5460661  Oracle数字函数
+https://blog.csdn.net/yangzhengjianglove/article/details/81235985  Joiner的用法
+https://www.cnblogs.com/xinxin1994/p/5990167.html   Oracle触发器反向调用Java程序
+https://www.cnblogs.com/waynelo/p/9869020.html   Oracle行转列，pivot函数和unpivot函数
+https://oomake.com/question/8000726   拖放：获取目标属性(ID，内部HTML)
+https://blog.csdn.net/weixin_41916639/article/details/82463659   jQuery sortable使用详解
+https://blog.csdn.net/ruler1112/article/details/77604578    js中的拖拽drag
+https://blog.csdn.net/weixin_39090097/article/details/82996652  实现容器内部拖拽 ---- drag.js
+https://blog.csdn.net/caomage/article/details/83622628  基于鼠标事件的拖拽以及基于HTML5 API的拖拽完整实现
+https://blog.csdn.net/baidu_31333625/article/details/53811510  js原生拖拽事件（HTML5的拖放 API）
+https://my.oschina.net/iyinghui/blog/1560544  最好的IDEA中文视频教程
+https://jqueryui.com/sortable/
+
+
+1.  https://www.jianshu.com/p/cd3557b1a474   RXJAVA2.0-从入门到放弃
+2. https://www.jianshu.com/u/c50b715ccaeb   RXjava系列教程
+3. https://www.jianshu.com/p/f17821d2cf78  RxJava源码分析系列（一） - Observable的基本分析
+4. http://www.java1234.com/zy.html   该地址有免费资料
+5. https://www.cnblogs.com/xdp-gacl/p/3855702.html  有关coolie 与session
+6. http://webmagic.io/docs/zh/     spider地址
+7. https://www.cnblogs.com/XJJD/p/7773472.html   ssm框架集成Quartz定时器
+8. https://blog.csdn.net/u014492334/article/details/51733834  仿百度搜索框
+9. https://www.cnblogs.com/kscnchina/p/4570865.html  oracle 教程
+10. https://www.cnblogs.com/bbllw/archive/2019/05.html   博客技术地址
+11. http://210.13.41.140/   代码地址
+12. https://www.runoob.com/java/java8-lambda-expressions.html  各种教程网址
+13. https://www.cnblogs.com/nayitian/p/3282862.html  java识别验证码
+14. https://www.cnblogs.com/hellowhy/p/9728862.html     Mybatis-spring    SqlSessionTemplate
+15. https://blog.csdn.net/medier/article/details/81911922   调度器Schedulers
+16. https://blog.csdn.net/miao309410364/article/details/53463327   RxJava运用Scheduler完成多线程操作
+17. https://www.cnblogs.com/bbllw/p/10110711.html
+18. https://blog.csdn.net/lzyzsd/article/details/41833541   深入浅出RxJava（一：基础篇）
+19. www.coderyyn.cn  博客地址
+20. https://www.cnblogs.com/bbllw/p/10110711.html  网站博客随笔地址
+
+
+ https://www.jianshu.com/p/cd3557b1a474   RXJAVA2.0-从入门到放弃
+ https://www.jianshu.com/u/c50b715ccaeb   RXjava系列教程
+ https://www.jianshu.com/p/f17821d2cf78  RxJava源码分析系列（一） - Observable的基本分析
+ http://www.java1234.com/zy.html   该地址有免费资料
+ https://www.cnblogs.com/xdp-gacl/p/3855702.html  有关coolie 与session
+ http://webmagic.io/docs/zh/     spider地址
+ https://www.cnblogs.com/XJJD/p/7773472.html   ssm框架集成Quartz定时器
+ https://blog.csdn.net/u014492334/article/details/51733834  仿百度搜索框
+ https://www.cnblogs.com/kscnchina/p/4570865.html  oracle 教程
+ https://www.cnblogs.com/bbllw/archive/2019/05.html   博客技术地址
+ http://210.13.41.140/   代码地址
+https://www.runoob.com/java/java8-lambda-expressions.html  各种教程网址
+https://www.cnblogs.com/nayitian/p/3282862.html  java识别验证码
+https://www.cnblogs.com/hellowhy/p/9728862.html     Mybatis-spring    SqlSessionTemplate
+https://blog.csdn.net/medier/article/details/81911922   调度器Schedulers
+https://blog.csdn.net/miao309410364/article/details/53463327   RxJava运用Scheduler完成多线程操作
+https://www.cnblogs.com/bbllw/p/10110711.html
+https://blog.csdn.net/lzyzsd/article/details/41833541   深入浅出RxJava（一：基础篇）
+www.coderyyn.cn  博客地址
+https://www.cnblogs.com/bbllw/p/10110711.html  网站博客随笔地址
+http://fontawesome.dashgame.com/  图标网址
+select  *  from   A where not exists(select 1 from B where A.id=B.id)
+https://www.jianshu.com/p/cd3557b1a474   RXJAVA2.0-从入门到放弃
+https://www.jianshu.com/u/c50b715ccaeb   RXjava系列教程
+https://www.jianshu.com/p/f17821d2cf78  RxJava源码分析系列（一） - Observable的基本分析
+http://www.java1234.com/zy.html   该地址有免费资料
+https://www.cnblogs.com/xdp-gacl/p/3855702.html  有关coolie 与session
+http://webmagic.io/docs/zh/     spider地址
+https://www.cnblogs.com/jianzhixuan/p/6427640.html    redis数据库入门教程
+https://zhile.io/2019/04/23/mybatis-code-helper-pro-crack.html   MyBatisCodeHelper-Pro插件破解版
+https://blog.csdn.net/qq_18657175/article/details/89784663   说说闭锁、栅栏、信号量是什么
+https://www.jianshu.com/p/63c7ad13907a   Web开发中的中文乱码问题
+https://www.cnblogs.com/juncaoit/p/8242757.html  数据库
+https://www.cnblogs.com/lonelyxmas/category/293520.html   随笔分类 - DevExpress 
+https://blog.csdn.net/zuoyefeng1990/article/details/79784900   C# webBrowser打开网页出现脚本错误解决
+jianshu.com/p/cd3557b1a474   RxJava2.0——从放弃到入门
+jianshu.com/p/f17821d2cf78   RxJava 源码分析系列(一) - Observable的基本分析
+https://www.jianshu.com/u/c50b715ccaeb    rxjava 简书入门  
+https://blog.csdn.net/sj0613xz/article/details/78969197   layui点击按钮添加可编辑的一行
+https://blog.csdn.net/yiifaa/article/details/52104698?locationNum=12     Table的思索(二):表头固定而内容滚动的表格
+https://blog.csdn.net/zhi_jie/article/details/80698828  table表格多层嵌套table采坑！（重复描边兼容问题）
+http://fontawesome.dashgame.com/   一套绝佳的图标字体库和CSS框架
+https://www.cnblogs.com/linjiqin/category/455970.html     随笔分类 - 工具类 
+http://www.ityouknow.com/spring-boot.html   Spring Boot 系列文章
+https://wenku.baidu.com/view/eb985b5d312b3169a451a455.html  word2007-xml存储标签属性说明文件
+https://www.cnblogs.com/hushzhang/p/5901052.html  C#中的委托 
+https://www.cnblogs.com/sharpest/p/11406777.html   SQL----EXISTS 关键字
+https://blog.csdn.net/qq_36628003/article/details/82684679   devexpress 使用安装、破解注册和汉化包进行汉化的步骤
+https://www.cnblogs.com/zhuqiyuanblog/archive/2018/12/07/10081404.html     DevExpress（V14.1.4）安装、破解和汉化的程序下载链接
+https://www.cnblogs.com/wuhuacong/p/3613826.html   C#开发微信门户及应用(1)--开始使用微信接口 
+https://fly.layui.com/jie/31296/    layui怎么动态设置列属性
+https://www.jianshu.com/p/cd3557b1a474  rxjava 入门地址
+
+mysql视频和资料  链接：https://pan.baidu.com/s/14EoVSlWFwAEzsa8-XC61-A 密码：6cde
+
+项目：
+
+链接：https://pan.baidu.com/s/18cZZ22va495qjlAAU4jFzA 密码：w6ri
+链接：https://pan.baidu.com/s/1VkFTRv4DfKShN4VrlZyxdA 密码：runc
+链接：https://pan.baidu.com/s/1SgZnAA_OhOZEjlB4Tr5GRA 密码：lbng
+链接：https://pan.baidu.com/s/12b_V2LxoBoEP7EWK4Kc_Ew 密码：20sd
+链接：https://pan.baidu.com/s/1ilvozGK8oB_-j5bhlvcB7w 密码：l4v2
+
+
+
+
+
+
+
+
+	
