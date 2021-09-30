@@ -14,6 +14,7 @@ word×ªxml±êÇ©ÊôÐÔ½éÉÜ£º
     white-space:normal;
     word-break: break-all;
 }
+
 //layui±íÍ·¹Ì¶¨
 /* ±í¸ñÈÝÆ÷ÑùÊ½£¬ÓÃflex²¼¾Ö¿É±£Ö¤tableÄÚÈÝÄÜÆÌÂúÊ£Óà¿Õ¼ä */
 .sti-tbl-container {
@@ -22,10 +23,12 @@ word×ªxml±êÇ©ÊôÐÔ½éÉÜ£º
     display : flex;
     flex-direction: column;
 }
+
 /* ÉèÖÃ±í¸ñµÄ²¼¾Ö·½Ê½£¬ÓÃÓÚ¿í¶È¶ÔÆë */
 .sti-tbl-body>table, .sti-tbl-header>table {
     table-layout: fixed;
 }
+
 /* ÉèÖÃ±í¸ñÄÚÈÝÈÝÆ÷£¬ÓÃÓÚÆÌÂúÕû¸öÊ£Óà¿Õ¼ä */
 .sti-tbl-container .sti-tbl-body {
     flex-grow : 1;
@@ -36,6 +39,8 @@ lay('.test-item').each(function(){//´Ë·½·¨Ä¿µÄÔÚÓÚ½â¾ölayui¿Ø¼þlaydate µã»÷Ê±Ò»É
 				  laydate.render({elem:this,trigger: 'click'});
 				  form.render();
 			 Í¬Ê±ÔÚclassÖÐÌí¼Ótest-itemÑùÊ½
+
+
 //»¬ÂÖ¹ö¶¯Ê± laydate ¹Ø±ÕÊÂ¼þ 
 	function myWheel(e) {
 		if(e.wheelDelta > 0){
@@ -55,10 +60,12 @@ lay('.test-item').each(function(){//´Ë·½·¨Ä¿µÄÔÚÓÚ½â¾ölayui¿Ø¼þlaydate µã»÷Ê±Ò»É
 				}
 	    }
 	}
+
 	//¼àÌý»¬ÂÖ
 	if (document.addEventListener) {
 		document.addEventListener("DOMMouseScroll", myWheel, false);
     }
+
     //¼æÈÝ»ðºü
 	document.onmousewheel = myWheel;//ÆäËûä¯ÀÀÆ÷
 
@@ -67,6 +74,7 @@ lay('.test-item').each(function(){//´Ë·½·¨Ä¿µÄÔÚÓÚ½â¾ölayui¿Ø¼þlaydate µã»÷Ê±Ò»É
 				  laydate.render({elem:this,trigger: 'click'});
 				  form.render();
 			 Í¬Ê±ÔÚclassÖÐÌí¼Ótest-itemÑùÊ½
+
 Ò»¡¢SQL
 
 1.1¡¢»ù±¾¸ÅÄî£º
@@ -214,8 +222,8 @@ i1/n	INTERVAL        ·µ»Ø I1 ³ýÒÔ N µÄÖµ¡£
 
 3.3¡¢ÏÔÊ¾×ª»»£º£¨conversion£©
 
-TO_NUMBER(char[,'format_model'])	×Ö·û×ª»»µ½Êý×ÖÀàÐÍ
-TO_DATE(char[,'format_model'])	×Ö·û×ª»»µ½ÈÕÆÚÀàÐÍ
+TO_NUMBER(char[,'format_model'])	 ×Ö·û×ª»»µ½Êý×ÖÀàÐÍ
+TO_DATE(char[,'format_model'])	     ×Ö·û×ª»»µ½ÈÕÆÚÀàÐÍ
 ¸ñÊ½ËµÃ÷·û£ºÒªÓëÇ°±ßÒª×ª»»µÄ×Ö·û´®µÄ¸ñÊ½ÒªÏàÍ¬²ÅÄÜ×ª»»£¨Æ¥ÅäÎÊÌâ£º¸ñÊ½ºÍÎ»Êý£©¡£TO_CHAR(date[,'format_model'[,nlsparams]])
 µÚ¶þ¸ö²ÎÊý¿ÉÒÔÊ¡ÂÔ£¬²»Ö¸¶¨¸ñÊ½£¬°´ÏµÍ³Ä¬ÈÏ¸ñÊ½Êä³ö¡£Çø·Ö´óÐ¡Ð´¡£
 Ê¹ÓÃ FM£¨ÔÚ¸ñÊ½¿ØÖÆ·ûÇ°Ìí¼Ó£©·ûºÅ¿ÉÒÔÈ¥µô¿Õ¸ñ»òÊÇÊ×Î»µÄÁã¡£
@@ -224,15 +232,6 @@ TO_DATE(char[,'format_model'])	×Ö·û×ª»»µ½ÈÕÆÚÀàÐÍ
 
 
 5.¸ñÊ½¿ØÖÆ·ûµÄÀàÐÍ£º
-
-
-
-
-
-
-
-
-
 
 6.Ê±¼ä¸ñÊ½¿ØÖÆ·û£º
 
@@ -257,9 +256,6 @@ SP ÊÇ»ùÊý´Ê£¬½«ÈÕÆÚ×ª»»³ÉÓ¢ÎÄµÄ»ùÊý´ÊÆ´Ð´¡£
 TO_CHAR(NUM[,'format_model'[,nlsparams]])×ª»»Êý×Ö
 ½« NUMBER ÀàÐÍ²ÎÊý NUM ×ª»»³É VARCHAR2 ÀàÐÍ¡£Èç¹ûÖ¸¶¨ FORMAT£¬Ëü»á¿ØÖÆÕû¸ö×ª»»¡£
 Èç¹ûÃ»ÓÐÖ¸¶¨ FORMAT£¬ÄÇÃ´½á¹û×Ö·û´®ÖÐ½«°üº¬ºÍ NUM ÖÐÓÐÐ§Î»µÄ¸öÊýÏàÍ¬µÄ×Ö·û¡£NLSPARAMS ÓÃÀ´Ö¸¶¨Ð¡ÊýµãºÍÇ§·Ö·û¼°»õ±Ò·ûºÅ¡£ËüµÄ¸ñÊ½¿ÉÎª£º'NLS_NUMERIC_CHARS=' ' dg ' 'NLS_CURRENCY= ' 'string' ' ' ¡£ d ºÍg ·Ö±ð´ú±íÐ¡ÊýµãºÍÇ§·Ö·û£¬STRING ´ú±í»õ±Ò·ûºÅ¡£
-
-
-
 
 2.Ìõ¼þ±í´ïÊ½£º
 
@@ -363,8 +359,6 @@ where e.department_id=d.department_id and e.salary=d.m£»
 ²éÑ¯Ã¿¸ö²¿ÃÅÐ½Ë®×îÉÙµÄÔ±¹¤µÄ×ÊÁÏ¡£
 
 4.¶àÐÐ¶àÁÐ×Ó²éÑ¯
-
-
 
 
 sql¼ÇÂ¼£º
@@ -650,10 +644,14 @@ minux
 truncate table table1;
 insert into table1 select * from table_new;
 ²éÑ¯¼°É¾³ýÖØ¸´¼ÇÂ¼µÄ·½·¨´óÈ«
+
+
 1¡¢²éÕÒ±íÖÐ¶àÓàµÄÖØ¸´¼ÇÂ¼£¬ÖØ¸´¼ÇÂ¼ÊÇ¸ù¾Ýµ¥¸ö×Ö¶Î£¨peopleId£©À´ÅÐ¶Ï
 select * from people
 where peopleId in £¨select peopleId from people group by 
 peopleId having count£¨peopleId£© > 1£©
+
+
 2¡¢É¾³ý±íÖÐ¶àÓàµÄÖØ¸´¼ÇÂ¼£¬ÖØ¸´¼ÇÂ¼ÊÇ¸ù¾Ýµ¥¸ö×Ö¶Î£¨peopleId£©À´ÅÐ¶Ï£¬Ö»ÁôÓÐrowid×îÐ¡µÄ¼ÇÂ¼
 delete from people
 where peopleId in £¨select peopleId from people group by 
@@ -661,7 +659,10 @@ peopleId
 having count£¨peopleId£© > 1£©
 and rowid not in £¨select min£¨rowid£© from people group by 
 peopleId having count£¨peopleId £©>1£©
+
+
 3¡¢²éÕÒ±íÖÐ¶àÓàµÄÖØ¸´¼ÇÂ¼£¨¶à¸ö×Ö¶Î£©
+
 select * from vitae a
 where £¨a.peopleId,a.seq£© in £¨select peopleId,seq from vitae 
 group by peopleId,seq having count£¨*£© > 1£©
