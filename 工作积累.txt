@@ -900,12 +900,12 @@ having count（id） > 1
     </bean>
 
    <!--  jobDetail -->
-   <!-- 走jxCourseArrangeAction类   getSMSInfo方法   -->
-    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="jxCourseArrangeAction"></property>
-        <property name="targetMethod" value="getSMSInfo"></property>
-        <property name="concurrent" value="false" />
-    </bean>
+              <!-- 走jxCourseArrangeAction类   getSMSInfo方法   -->
+               <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                   <property name="targetObject" ref="jxCourseArrangeAction"></property>
+                   <property name="targetMethod" value="getSMSInfo"></property>
+                   <property name="concurrent" value="false" />
+               </bean>
 
    <!-- 定义trigger 触发器 -->
    <!--
